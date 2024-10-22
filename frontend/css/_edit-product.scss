@@ -1,0 +1,78 @@
+#edditProduct {
+    padding: 20px;
+    background-color: $bgc-classic;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 1rem auto;
+  
+    h2 {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  
+      input[type="text"],
+      input[type="number"],
+      input[type="file"],
+      textarea {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+  
+        &:focus {
+          border-color: $color-matcha;
+          outline: none;
+        }
+      }
+  
+      button {
+        padding: 10px;
+        background-color: #000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+  
+        &:hover {
+          background-color: $color-matcha;
+        }
+      }
+  
+      p {
+        color: red;
+        font-size: 0.9rem;
+        text-align: center;
+      }
+    }
+  
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    #edditProduct {
+      padding: 40px;
+      max-width: 600px;
+  
+      h2 {
+        font-size: 2rem;
+      }
+    }
+  }
+  

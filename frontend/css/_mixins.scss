@@ -1,0 +1,18 @@
+// Mixin pour les media queries
+@mixin respond-to($device) {
+    @if $device == mobile {
+      @media #{$mobile} { @content; }
+    }
+    @else if $device == small {
+      @media #{$small} { @content; }
+    }
+    @else if $device == medium {
+      @media #{$medium} { @content; }
+    }
+    @else if $device == large {
+      @media #{$large} { @content; }
+    }
+    @else if $device == extra {
+      @media #{$extra} { @content; }
+    }
+  }

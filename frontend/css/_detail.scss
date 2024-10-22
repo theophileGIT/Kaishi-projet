@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  #detail-product {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    overflow: hidden;
+  
+    > div {
+      margin: 0;
+      padding: 10px;
+  
+      &:first-of-type {
+        flex: unset;
+        margin-bottom: 10px;
+      }
+  
+      &:nth-of-type(2) {
+        flex: unset;
+      }
+  
+      article {
+        margin-bottom: 1rem;
+        padding: 1rem;
+  
+        img {
+          max-width: 100%;
+          object-fit: cover;
+        }
+  
+        h3 {
+          margin: 0;
+          color: #333;
+          font-size: 2rem;
+          font-weight: bold;
+        }
+  
+        p {
+          margin: 1rem 0;
+          color: #555;
+          text-align: center;
+  
+          &:last-child {
+            margin-top: 10px;
+          }
+  
+          &:first-of-type {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+  
+            svg {
+              margin-left: 10px;
+              transition: color 0.3s ease;
+            }
+  
+            &:hover svg {
+              color: rgb(0, 0, 0);
+            }
+          }
+        }
+  
+        &:not(:last-child) {
+          border-bottom: 1px solid #ccc;
+          padding-bottom: 1rem;
+        }
+  
+        form {
+          margin-top: 1rem;
+  
+          label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+          }
+  
+          input[type="number"] {
+            width: 60px;
+            margin-left: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          }
+  
+          button {
+            margin-top: 1rem;
+            padding: 8px 12px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+  
+            &:hover {
+              color: black;
+              background-color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @media (min-width: 768px) {
+    #detail-product {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 2rem;
+  
+      > div {
+        &:first-of-type {
+          flex: 0 0 60%;
+          margin-right: 10px;
+        }
+  
+        &:nth-of-type(2) {
+          flex: 0 0 40%;
+        }
+      }
+    }
+  }
+  

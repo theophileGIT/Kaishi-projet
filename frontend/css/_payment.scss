@@ -1,0 +1,47 @@
+#payment {
+    padding: 2rem; // Ajout d'un padding autour de la section
+    background-color: #f9f9f9; // Couleur de fond légère
+    border: 1px solid #ccc; // Bordure autour de la section
+    border-radius: 10px; // Arrondir les coins
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Ombre pour donner de la profondeur
+    max-width: 600px; // Largeur maximale de la section
+    margin: 2rem auto; // Centrer la section avec des marges
+
+    h2 {
+        font-size: 24px; // Taille de la police pour le titre
+        margin-bottom: 1rem; // Espace en dessous du titre
+        color: #333; // Couleur du texte
+    }
+
+    p {
+        font-size: 16px; // Taille de la police pour le texte
+        color: #666; // Couleur du texte
+        margin-bottom: 2rem; // Espace en dessous du paragraphe
+    }
+
+    // Styles pour le formulaire de paiement
+    form {
+        display: flex; // Utilisation du flexbox pour le formulaire
+        flex-direction: column; // Disposer les éléments en colonne
+        gap: 1rem; // Espace entre les éléments du formulaire
+
+        input, 
+        button {
+            padding: 10px; // Padding interne pour les champs et le bouton
+            border: 1px solid $color-matcha; // Bordure autour des champs et bouton
+            border-radius: 5px; // Coins arrondis
+            font-size: 16px; // Taille de la police
+        }
+
+        button {
+            background-color: $color-matcha; // Couleur de fond du bouton
+            color: white; // Couleur du texte du bouton
+            cursor: pointer; // Curseur en main au survol
+
+            &:hover {
+                background-color: #ccc; // Couleur grisée lorsque désactivé
+               
+            }
+        }
+    }
+}

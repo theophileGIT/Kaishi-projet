@@ -1,0 +1,165 @@
+#success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 80vh;
+    background-color: #f0f4f8;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;  // Smooth fade-in animation
+  
+    // Styling for the FontAwesome check icon
+    .fa-check {
+      font-size: 40px;
+      color: white;
+      background-color: #4caf50;  // Green background
+      border-radius: 50%;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  // Add shadow for depth
+      animation: popIn 0.6s ease-out;  // Smooth pop-in animation
+  
+      @media(min-width: 768px) {
+        font-size: 50px;
+        padding: 25px;
+      }
+  
+      @media(min-width: 1024px) {
+        font-size: 60px;
+        padding: 30px;
+      }
+    }
+  
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 15px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      animation: slideDown 0.7s ease-out;  // Header slides in from top
+  
+      @media(min-width: 768px) {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+    }
+  
+    p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 25px;
+      animation: fadeInText 0.8s ease-in-out;
+  
+      @media(min-width: 768px) {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+    }
+  
+    a {
+      padding: 12px 30px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #4caf50;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;  // Smooth transition
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  // Button shadow for depth
+  
+      &:hover {
+        background-color: #45a049;
+        transform: translateY(-5px);  // Lift button slightly on hover
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);  // Deeper shadow
+      }
+  
+      &:active {
+        transform: translateY(0);  // Button returns on click
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      }
+  
+      @media(min-width: 768px) {
+        padding: 15px 40px;
+        font-size: 18px;
+      }
+    }
+  
+    // Animations for dynamic effect
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  
+    @keyframes slideDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  
+    @keyframes fadeInText {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  
+    @keyframes popIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  }
+  
+  // Media queries for larger screens
+  @media (min-width: 768px) {
+    #success {
+      padding: 40px;
+  
+      h2 {
+        font-size: 32px;
+      }
+  
+      p {
+        font-size: 18px;
+      }
+  
+      a {
+        font-size: 18px;
+      }
+    }
+  
+    @media (min-width: 1024px) {
+      #success {
+        padding: 60px;
+  
+        h2 {
+          font-size: 36px;
+        }
+  
+        p {
+          font-size: 20px;
+        }
+  
+        a {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  

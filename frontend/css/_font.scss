@@ -1,0 +1,25 @@
+$averia-font-path: 'assets/fonts';
+
+$averia-regular: '#{$averia-font-path}/AveriaSerifLibre-Regular.ttf';
+$averia-bold: '#{$averia-font-path}/AveriaSerifLibre-Bold.ttf';
+$averia-italic: '#{$averia-font-path}/AveriaSerifLibre-Italic.ttf';
+$averia-bold-italic: '#{$averia-font-path}/AveriaSerifLibre-BoldItalic.ttf';
+$averia-light: '#{$averia-font-path}/AveriaSerifLibre-Ligh.ttf';
+$averia-light-italic: '#{$averia-font-path}/AveriaSerifLibre-LightItalic.ttf';
+
+@mixin font-face($name, $path, $weight: 400, $style: normal) {
+  @font-face {
+    font-family: '#{$name}';
+    src: url('#{$path}') format('truetype');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+// mixins
+@include font-face('AveriaSerifLibre', $averia-regular, 400, normal);
+@include font-face('AveriaSerifLibre', $averia-bold, 700, normal);
+@include font-face('AveriaSerifLibre', $averia-italic, 400, italic);
+@include font-face('AveriaSerifLibre', $averia-bold-italic, 700, italic);
+@include font-face('AveriaSerifLibre', $averia-light, 400, normal);
+@include font-face('AveriaSerifLibre', $averia-light-italic, 700, italic);

@@ -1,0 +1,130 @@
+#register {
+  position: relative;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 2rem;
+  background-color: $bgc-classic;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'helvetica', sans-serif;
+  overflow: hidden;
+
+  // Arrière-plan avec les cercles animés
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+    z-index: 0;
+    animation: moveCircle 20s infinite alternate;
+  }
+
+  &::before {
+    width: 250px;
+    height: 250px;
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+  }
+
+  &::after {
+    width: 200px;
+    height: 200px;
+    bottom: -100px;
+    right: -100px;
+    animation-delay: 5s;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333; 
+    font-size: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  p {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #cc0000; 
+    position: relative;
+    z-index: 1;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"] {
+      margin-bottom: 1rem;
+      padding: 0.8rem 1rem;
+      border: 1px solid #e0e0e0; // Harmonisé avec le formulaire de connexion
+      border-radius: 25px;
+      font-size: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+
+      &:focus {
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(137, 10, 10, 0.2);
+        outline: none;
+        border-color: #66cc99;
+      }
+    }
+
+    input[type="submit"] {
+      padding: 0.8rem 1rem;
+      background-color: $color-matcha;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color:#d0e5cdaa;
+      }
+    }
+  }
+}
+
+// Animation des cercles, déjà utilisée dans le formulaire de connexion pour la cohérence
+@keyframes moveCircle {
+  0% {
+    transform: translate(calc(-50% + 100px), calc(-50% + 100px));
+  }
+  100% {
+    transform: translate(calc(-50% - 100px), calc(-50% - 100px));
+  }
+}
+
+// Media Queries pour la compatibilité mobile
+@media (max-width: 768px) {
+  #register {
+    padding: 1.5rem;
+    max-width: 90%; // Rendre le formulaire plus flexible en petite taille d'écran
+  }
+
+  h2 {
+    font-size: 1.5rem; // Réduire la taille du titre sur mobile, comme pour #connexion
+  }
+
+  form {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="submit"] {
+      font-size: 0.9rem; // Réduire la taille des inputs sur mobile, cohérent avec #connexion
+    }
+  }
+}
