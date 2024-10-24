@@ -38,7 +38,7 @@ class OrderModel {
             })
             .catch((err) => {
                 console.error("Erreur lors de la sauvegarde des détails de la commande:", err);
-                throw err; // Relance l'erreur pour être attrapée dans le contrôleur
+                throw err; 
             });
     }
 
@@ -50,7 +50,7 @@ class OrderModel {
             })
             .catch((err) => {
                 console.error("Erreur lors de la mise à jour du montant total de la commande:", err);
-                throw err; // Relance l'erreur pour être attrapée dans le contrôleur
+                throw err; 
             });
     }
 

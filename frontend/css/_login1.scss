@@ -70,15 +70,14 @@
   }
 
 
-  // Media Queries pour la compatibilité mobile
   @media (max-width: 768px) {
     #connexion {
       padding: 1.5rem;
-      max-width: 90%; // Rendre le formulaire plus flexible en petite taille d'écran
+      max-width: 90%; 
     }
 
     h2 {
-      font-size: 1.5rem; // Réduire la taille du titre sur mobile
+      font-size: 1.5rem; 
     }
 
     form {
@@ -86,7 +85,7 @@
       input[type="email"],
       input[type="password"],
       input[type="submit"] {
-        font-size: 0.9rem; // Réduire la taille des inputs sur mobile
+        font-size: 0.9rem;
       }
     }
   }

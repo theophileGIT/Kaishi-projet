@@ -17,7 +17,6 @@ module.exports = (ProductModel, OrderModel, UserModel) => {
                 return res.json({ status: 400, msg: "user_id est manquant." });
             }
 
-            // Utilisation de for...of pour assurer la bonne gestion des promesses
             const orderPromises = req.body.basket.map(async (b) => {
                 console.log("Traitement du produit:", b);
 
@@ -27,10 +26,8 @@ module.exports = (ProductModel, OrderModel, UserModel) => {
                 }
 
                 b.safePrice = parseFloat(product[0].price);
-                total_amount += parseInt(b.quantityInCart) * b.safePrice; // Calculer le montant total ici
+                total_amount += parseInt(b.quantityInCart) * b.safePrice; 
             });
-
-            // Attendre que toutes les promesses soient résolues
             await Promise.all(orderPromises);
 
             console.log("Montant total calculé:", total_amount);
@@ -46,7 +43,7 @@ module.exports = (ProductModel, OrderModel, UserModel) => {
                 return res.json({ status: 500, msg: "Échec enregistrement de la commande!" });
             }
 
-            const id = orderInfos.insertId; // Maintenant, nous avons l'ID de la commande
+            const id = orderInfos.insertId; 
 
             // Sauvegarde des détails de la commande
             const detailPromises = req.body.basket.map(async (b) => {
@@ -56,7 +53,6 @@ module.exports = (ProductModel, OrderModel, UserModel) => {
                 }
             });
 
-            // Attendre que toutes les promesses de détail soient résolues
             await Promise.all(detailPromises);
 
             // Mise à jour du montant total de la commande

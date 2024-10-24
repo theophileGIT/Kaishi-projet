@@ -27,7 +27,7 @@ const Basket = (props) => {
     // Enregistre une commande et envoie vers le boîtier de paiement
     const onClickSaveOrder = (e) => {
         e.preventDefault();
-        setLoading(true); // Activer l'état de chargement
+        setLoading(true);
 
         if (user.isLogged) {
             const datas = {
@@ -36,7 +36,7 @@ const Basket = (props) => {
             };
             saveOneOrder(datas)
                 .then((res) => {
-                    setLoading(false); // Désactiver l'état de chargement
+                    setLoading(false); 
                     if (res.status === 200) {
                         setOrderId(res.orderId);
                         setRedirect(true);
@@ -100,7 +100,7 @@ const Basket = (props) => {
 
     // Ajout d'une vérification supplémentaire pour éviter les erreurs d'accès à basket.basket
     if (!basket || !basket.basket || basket.basket.length === 0) {
-        return <p>Votre panier est vide</p>; // Message si le panier est vide ou non chargé
+        return <p>Votre panier est vide</p>; 
     }
 
     // Calcul du prix total avec gestion d'éventuelles données incorrectes
@@ -114,7 +114,7 @@ const Basket = (props) => {
         <section id="basket">
 
             <div>
-            <h2>RÉCAPITULATIF DE MON PANIER</h2> {/* Titre au-dessus de la première div */}
+            <h2>RÉCAPITULATIF DE MON PANIER</h2> 
             {basket.basket.length > 0 ? (
                     <table>
                         <tbody>
@@ -128,7 +128,7 @@ const Basket = (props) => {
                                                 alt={product.name}
                                                 onError={(e) => {
                                                     e.target.onerror = null;
-                                                    e.target.src = "chemin/vers/image-par-defaut.jpg"; // Image par défaut en cas d'erreur 
+                                                    e.target.src = "chemin/vers/image-par-defaut.jpg"; 
                                                 }}
                                             />
                                         </td>

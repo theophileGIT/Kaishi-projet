@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; // L'élément prend toute la hauteur
+    min-height: 100vh;
     box-sizing: border-box;
 
     .profil-container {
@@ -13,19 +13,19 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         padding: 40px;
         max-width: 600px;
-        width: 100%; // L'élément prend toute la largeur disponible
+        width: 100%;
         text-align: center;
     }
 
     h2 {
         font-size: 28px;
-        color: #333; // Couleur du titre
+        color: #333;
         margin-bottom: 20px;
         font-weight: 600;
     }
 
     .error-message {
-        color: $error-color; // Couleur des messages d'erreur
+        color: $error-color;
         margin-bottom: 15px;
     }
 
@@ -33,12 +33,12 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
-        width: 100%; // Prend toute la largeur disponible
+        width: 100%;
         margin-bottom: 20px;
 
         .input-group {
             display: flex;
-            gap: 10px; // Espace entre les inputs
+            gap: 10px;
         }
 
         input[type="text"],
@@ -49,12 +49,12 @@
             font-size: 16px;
             background-color: #f9f9f9;
             color: #333;
-            width: 100%; // Prend toute la largeur de chaque input
+            width: 100%;
             transition: border-color 0.3s;
 
             &:focus {
                 outline: none;
-                border-color: #99ccff; // Couleur au focus
+                border-color: #99ccff;
             }
         }
 
@@ -71,13 +71,12 @@
             &:hover {
                 background-color: #d0e5cdaa;
             }
-
         }
     }
 
     .delete-button {
         padding: 12px;
-        background-color: #4d4c4c; // Couleur du bouton de suppression
+        background-color: #4d4c4c;
         border: none;
         border-radius: 8px;
         color: white;
@@ -87,7 +86,7 @@
         width: 100%;
 
         &:hover {
-            background-color: #cc5252; // Couleur au survol
+            background-color: #cc5252;
         }
     }
 }

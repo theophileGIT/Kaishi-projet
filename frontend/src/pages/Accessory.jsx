@@ -11,7 +11,7 @@ const Product = () => {
 
     useEffect(() => {
         const videoElement = videoRef.current;
-        if (!videoElement) return; // Check if videoElement is defined
+        if (!videoElement) return; 
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {

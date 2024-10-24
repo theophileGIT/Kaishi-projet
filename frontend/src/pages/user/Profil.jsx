@@ -12,7 +12,7 @@ const Profil = (props) => {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [adress, setAdress] = useState("");
-  const [zip, setZip] = useState(""); // Initialisé à une chaîne vide
+  const [zip, setZip] = useState(""); 
   const [city, setCity] = useState("");
   const [phone, setPhone] = useState("");
 

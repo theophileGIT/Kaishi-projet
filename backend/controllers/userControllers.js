@@ -50,8 +50,8 @@ module.exports = (UserModel) => {
                 zip,
                 city,
                 phone,
-                role: 'user', // Rôle par défaut
-                created_at: new Date() // Date de création de l'utilisateur
+                role: 'user', 
+                created_at: new Date() 
             };
 
             // Enregistrer l'utilisateur dans la base de données
@@ -61,7 +61,6 @@ module.exports = (UserModel) => {
                 return res.json({ status: 500, msg: "Une erreur est survenue lors de l'enregistrement de l'utilisateur." });
             }
 
-            // Réponse succès
             res.json({ status: 200, msg: "L'utilisateur a bien été enregistré!" });
         } catch (err) {
             console.error(err);

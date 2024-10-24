@@ -1,25 +1,25 @@
 #headband {
-    background-color: #f0f0f0; // Couleur de fond
-    padding: 10px 0;           // Espacement intérieur vertical
-    color: #333;               // Couleur du texte
-    font-size: 16px;           // Taille de la police
-    overflow: hidden;          // Masquer le texte en dehors du conteneur
-    position: relative;        // Positionnement relatif pour l'animation
-    white-space: nowrap;       // Empêcher le retour à la ligne
+    background-color: #f0f0f0; 
+    padding: 10px 0;          
+    color: #333;               
+    font-size: 16px;         
+    overflow: hidden;          
+    position: relative;        
+    white-space: nowrap;      
   
     p {
-      display: inline-block;   // Affichage en ligne pour le défilement
-      animation: scroll 12s linear infinite; // Animation de défilement
-      padding-left: 100%;      // Déplacer le texte initialement hors de l'écran     
+      display: inline-block;   
+      animation: scroll 12s linear infinite; 
+      padding-left: 100%;        
     }
   }
   
   @keyframes scroll {
     0% {
-      transform: translateX(0); // Début à droite du conteneur
+      transform: translateX(0); 
     }
     100% {
-      transform: translateX(-100%); // Fin hors du conteneur à gauche
+      transform: translateX(-100%); 
     }
   }
   

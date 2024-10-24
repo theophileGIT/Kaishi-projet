@@ -16,23 +16,10 @@ const AddProduct = () => {
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
     const [selectedFile, setFile] = useState(null);
-    const [selectedHoverFile, setHoverFile] = useState(null); // État pour le fichier de survol
+    const [selectedHoverFile, setHoverFile] = useState(null); 
     const [redirect, setRedirect] = useState(false);
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false); // État de chargement
-
-
-    const handleImageUpload = async (file) => {
-        const formData = new FormData();
-        formData.append("image", file);
-        try {
-            const res = await axios.post(`${config.apiUrl}/products/savePicture`, formData);
-            return res.data.url;
-        } catch (err) {
-            setError("Erreur lors du téléchargement de l'image.");
-            return null;
-        }
-    };
+    const [loading, setLoading] = useState(false);
 
     const addProduct = (datas) => {
         addOneProduct(datas)
@@ -58,7 +45,7 @@ const AddProduct = () => {
             formData.append("hoverPicture", selectedHoverFile); 
         }
     
-        setLoading(true); // Commencer le chargement
+        setLoading(true); 
 
         axios({
             method: "post",
@@ -70,7 +57,7 @@ const AddProduct = () => {
             }
         })
         .then((res) => {
-            setLoading(false); // Fin du chargement
+            setLoading(false); 
             if (res.status === 200) {
                 const datas = {
                     name,

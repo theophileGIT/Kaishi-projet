@@ -45,10 +45,10 @@ const EditProduct = (props) => {
         formData.append("picture", selectedFile);
 
         if (selectedHoverFile) {
-            formData.append("hoverPicture", selectedHoverFile); // Ajout de l'image de survol
+            formData.append("hoverPicture", selectedHoverFile); 
         }
 
-        setLoading(true); // Commencer le chargement
+        setLoading(true); 
 
         axios({
             method: "post",
@@ -60,23 +60,23 @@ const EditProduct = (props) => {
             }
         })
         .then((res) => {
-            setLoading(false); // Fin du chargement
+            setLoading(false); 
             if (res.status === 200) {
                 const datas = {
                     name,
                     description,
                     price,
                     picture: res.data.url, 
-                    hoverPicture: res.data.hoverurl, // Récupération de l'URL de l'image de survol
+                    hoverPicture: res.data.hoverurl, 
                     quantity,
                 };
-                addProd(datas); // Envoi des données
+                addProd(datas); 
             } else {
                 setError("Erreur lors du téléchargement de l'image!!");
             }
         })
         .catch((err) => {
-            setLoading(false); // Fin du chargement
+            setLoading(false);
             console.log(err);
             setError("Erreur lors du téléchargement de l'image");
         });
@@ -91,7 +91,7 @@ const EditProduct = (props) => {
         } else if (isNaN(quantity) || isNaN(price)) {
             setError("Les champs prix et quantité doivent obligatoirement être un chiffre!");
         } else {
-            saveCompleProduct(); // Appel de la fonction pour enregistrer le produit
+            saveCompleProduct(); 
         }
     };
 
@@ -133,7 +133,7 @@ const EditProduct = (props) => {
                 <input
                     type="file"
                     onChange={(e) => {
-                        setHoverFile(e.currentTarget.files[0]); // Met à jour l'état pour le fichier d'image de survol
+                        setHoverFile(e.currentTarget.files[0]); 
                     }}
                 />
                 <textarea

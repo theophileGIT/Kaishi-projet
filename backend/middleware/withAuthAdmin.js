@@ -19,7 +19,6 @@ const withAuthAdmin = (req, res, next) => {
                 } else {
                     //on rajoute la propriété id dans l'objet req, qui va nous permettre de récupérer les infos de l'utilisateur à reconnecter
                     req.id = decoded.id
-                    //on est good on sort de la fonction, on autorise l'accés à la callback de la route protégée!
                     next()
                 }
             }

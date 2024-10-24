@@ -23,10 +23,7 @@ const calculateTotalAmount = (basket) => {
 let myPrice = calculateTotalAmount(lsBasket)
 
 
-/*on initialise une state: 
-    soit on aura basket avec un tableau d'objet et totalPrice avec la somme totale
-    soit on aura basket avec un tableau vide et totalPrice à zero
-*/
+
 const initialState = {
     basket: lsBasket,
     totalPrice: myPrice

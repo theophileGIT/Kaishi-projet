@@ -8,9 +8,7 @@ const Payment = (props) => {
     return (<section id="payment">
         <h2>Paiement</h2>
         <p>Id de la commande: {props.params.orderId}</p>
-        {/*On va brancher l'environnement des fonctionnalitées de react-stripe
-            qui va permettre d'effectuer les échanges avec l'api stripe de manière sécurisée
-        */}
+    
         <Elements stripe={stripePromise}>
             <CheckoutForm orderId={props.params.orderId} />
         </Elements>

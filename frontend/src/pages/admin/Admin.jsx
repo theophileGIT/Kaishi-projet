@@ -17,7 +17,7 @@ const Admin = (props) => {
   const onClickDeleteProduct = (id) => {
     deleteOneProduct(id)
       .then((res) => {
-        console.log("Réponse de la suppression :", res); // Ajoutez cette ligne pour inspecter la réponse
+        console.log("Réponse de la suppression :", res); 
         if (res.status === 200) {
           displayProducts()
             .then((response) => {
