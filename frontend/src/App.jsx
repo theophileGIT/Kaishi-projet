@@ -18,7 +18,6 @@ import Story from "./pages/Story"
 import Localisation from "./pages/Localisation"
 import Contact from "./pages/Contacts"
 import { Routes, Route, Navigate } from "react-router-dom"
-import './App.css'
 
 import RequireAuth from "./helpers/require-auth"
 

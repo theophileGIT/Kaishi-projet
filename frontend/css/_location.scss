@@ -3,8 +3,9 @@
   flex-direction: column;
   gap: 40px;
   padding: 1rem;
-  background-color:$color-matcha;
+  background-color: $color-matcha;
   margin: 0 auto;
+  font-family: 'Helvetica', sans-serif; 
 
   section {
     padding: 0;
@@ -14,7 +15,6 @@
   section:nth-child(1) {
     position: relative;
     margin: -2rem 0 2rem 0;
-
 
     img {
       width: 100%;

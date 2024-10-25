@@ -17,6 +17,7 @@ const Success = (props) => {
              <FontAwesomeIcon icon={faCheck} />
             <h2>L'équipe Kaishi vous remercie</h2>
             <p>Votre commande a été effectué avec succès</p>
+            <p>Vous recevrez bientôt un email de confirmation avec les détails.</p>
            
 
             <Link to="/">Retour</Link>

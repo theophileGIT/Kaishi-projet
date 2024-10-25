@@ -100,7 +100,7 @@ const Detail = () => {
                                     />
                                 </label>
                                 <button type="submit">
-                                    AJOdTER AU PANIER · {product.price} €
+                                    AJOUTER AU PANIER · {product.price} €
                                 </button>
                             </form>
                         </article>
