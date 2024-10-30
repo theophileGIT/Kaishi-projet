@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { addOneContact } from "../api/contact"; // Assurez-vous que le chemin de l'import est correct
+import { addOneContact } from "../api/contact"; 
 const Contact = () => {
-    // Gestion des états du formulaire
+
     const [email, setEmail] = useState('');
     const [content, setContent] = useState('');
     const [error, setError] = useState('');
