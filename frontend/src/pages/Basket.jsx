@@ -5,8 +5,8 @@ import { selectUser } from '../slices/userSlice';
 import { selectBasket, modifyBasket, cleanBasket } from '../slices/basketSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCalendarCheck, faTruckFast, faLock } from '@fortawesome/free-solid-svg-icons';
-import { saveOneOrder } from '../api/order';
 import { config } from '../config';
+import {saveOneOrder} from '../api/order'
 
 const Basket = (props) => {
     const basket = useSelector(selectBasket);
@@ -25,7 +25,7 @@ const Basket = (props) => {
     };
 
     // Enregistre une commande et envoie vers le boîtier de paiement
-    const onClickSaveOrder = (e) => {
+    const onClickSaveOrder = async (e) => {
         e.preventDefault();
         setLoading(true);
 
@@ -34,22 +34,30 @@ const Basket = (props) => {
                 user_id: user.infos.id,
                 basket: basket.basket
             };
-            saveOneOrder(datas)
-                .then((res) => {
-                    setLoading(false); 
-                    if (res.status === 200) {
-                        setOrderId(res.orderId);
-                        setRedirect(true);
-                    } else {
-                        console.log(res);
-                        alert("Une erreur est survenue lors de la validation de la commande.");
-                    }
-                })
-                .catch(err => {
-                    setLoading(false);
-                    console.log(err);
-                    alert("Erreur réseau. Veuillez réessayer.");
-                });
+
+            // Vérification supplémentaire pour s'assurer que les données du panier sont valides
+            const validBasket = basket.basket.every(product => product.price > 0 && product.quantityInCart > 0);
+            if (!validBasket) {
+                alert("Certains articles du panier ont des valeurs invalides.");
+                setLoading(false);
+                return;
+            }
+
+            try {
+                const res = await saveOneOrder(datas, user.token); // Inclure le jeton
+                setLoading(false);
+                // Ajustez ici selon la structure de votre réponse
+                if (res && res.orderId) {
+                    setOrderId(res.orderId);
+                    setRedirect(true);
+                } else {
+                    alert("Une erreur est survenue lors de la validation de la commande.");
+                }
+            } catch (err) {
+                setLoading(false);
+                alert("Erreur réseau. Veuillez réessayer.");
+                console.error(err);
+            }
         } else {
             setRedirect2(true);
         }
@@ -98,7 +106,7 @@ const Basket = (props) => {
         return <Navigate to="/login" />;
     }
 
-    // Ajout d'une vérification supplémentaire pour éviter les erreurs d'accès à basket.basket
+    // Vérification supplémentaire pour éviter les erreurs d'accès à basket.basket
     if (!basket || !basket.basket || basket.basket.length === 0) {
         return <p>Votre panier est vide</p>; 
     }
@@ -112,10 +120,9 @@ const Basket = (props) => {
 
     return (
         <section id="basket">
-
             <div>
-            <h2>RÉCAPITULATIF DE MON PANIER</h2> 
-            {basket.basket.length > 0 ? (
+                <h2>RÉCAPITULATIF DE MON PANIER</h2> 
+                {basket.basket.length > 0 ? (
                     <table>
                         <tbody>
                             {basket.basket.map((product) => {
@@ -162,14 +169,14 @@ const Basket = (props) => {
             <div>
                 {basket.basket.length > 0 && (
                     <article>
-                        <h3>Total:{totalPrice} €</h3>
+                        <h3>Total: {totalPrice} €</h3>
                         <button onClick={onClickSaveOrder} disabled={loading}>
                             {loading ? 'Validation en cours...' : 'Valider ma commande'}
                         </button>
                     </article>
                 )}
                 <article>
-                    <p> Une question? Contactez-nous au 03 12 34 56 78</p>
+                    <p>Une question? Contactez-nous au 03 12 34 56 78</p>
                 </article>
                 <article>
                     <ul>
@@ -181,8 +188,6 @@ const Basket = (props) => {
             </div>
         </section>
     );
-}    
+};
 
 export default Basket;
-
-

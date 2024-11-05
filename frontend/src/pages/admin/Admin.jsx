@@ -29,12 +29,11 @@ const Admin = (props) => {
             })
             .catch((err) => console.error("Erreur lors de l'affichage des produits :", err));
         } else {
-          console.error("Erreur lors de la suppression du produit :", res); // Log de l'erreur
+          console.error("Erreur lors de la suppression du produit :", res);
         }
       })
       .catch((err) => console.error("Erreur API lors de la suppression :", err));
   };
-
 
   useEffect(() => {
     const fetchProductsAndOrders = async () => {
@@ -95,13 +94,14 @@ const Admin = (props) => {
             )}
           </tbody>
           <Link to="/addProduct">
-          <FontAwesomeIcon icon={faPlusCircle} /> Ajouter un produit
-        </Link>
+            <FontAwesomeIcon icon={faPlusCircle} /> Ajouter un produit
+          </Link>
         </table>
       </div>
       <hr />
       <article>
         <h3>Mes commandes</h3>
+        
         <div>
           <h4>En attente de paiement</h4>
           <table>
@@ -159,7 +159,7 @@ const Admin = (props) => {
                         <td>
                           <Link to={`/orderDetail/${o.id}`}>{o.id}</Link>
                         </td>
-                        <td>{price(o.totalAmount)} €</td>
+                        <td>{o.totalAmount} €</td> {/* Correction ici */}
                         <td>{moment(o.creationTimestamp).format("DD-MM-YYYY")}</td>
                         <td>{o.status}</td>
                       </tr>

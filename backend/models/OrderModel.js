@@ -1,146 +1,104 @@
-module.exports = (_db) => {
-    db = _db;
-    return OrderModel;
-};
-
 class OrderModel {
-    // Validation d'une commande
-    static saveOneOrder(users_id, total_amount) {
-        console.log("saveOneOrder appelé avec:", { users_id, total_amount });
+    constructor(db) {
+        this.db = db;
+    }
 
-        // Vérification des valeurs
+    // Méthode pour sauvegarder une commande avec l'utilisateur et le montant total
+    async saveOneOrder(users_id, total_amount) {
         if (!users_id || total_amount === undefined || total_amount <= 0) {
             throw new Error("users_id ou total_amount est manquant ou invalide");
         }
 
-        return db.query(
-            'INSERT INTO orders (users_id, total_amount, created_at, status) VALUES (?, ?, NOW(), "not payed")',
-            [users_id, total_amount]
-        )
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                console.error("Erreur lors de la sauvegarde de la commande:", err);
-                throw err; // Relance l'erreur pour être attrapée dans le contrôleur
-            });
+        try {
+            const res = await this.db.query(
+                'INSERT INTO orders (users_id, total_amount, created_at, status) VALUES (?, ?, NOW(), "not payed")',
+                [users_id, total_amount]
+            );
+            return res;
+        } catch (err) {
+            console.error("Erreur lors de la sauvegarde de la commande:", err.message);
+            throw err;
+        }
     }
 
-    // Sauvegarde d'un orderdetail
-    static saveOneOrderDetail(orders_id, products) {
+    // Méthode pour sauvegarder les détails d'une commande
+    async saveOneOrderDetail(orders_id, products) {
         const total = parseInt(products.quantityInCart) * parseFloat(products.safePrice);
-        return db.query(
-            'INSERT INTO ordersdetails (orders_id, products_id, quantity, unit_price) VALUES (?, ?, ?, ?)',
-            [orders_id, products.id, products.quantityInCart, total]
-        )
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                console.error("Erreur lors de la sauvegarde des détails de la commande:", err);
-                throw err; 
-            });
+        try {
+            const res = await this.db.query(
+                'INSERT INTO ordersdetails (orders_id, products_id, quantity, unit_price) VALUES (?, ?, ?, ?)',
+                [orders_id, products.id, products.quantityInCart, total]
+            );
+            return res;
+        } catch (err) {
+            console.error("Erreur lors de la sauvegarde des détails de la commande:", err.message);
+            throw err;
+        }
     }
 
-    // Méthode pour mettre à jour le montant total de la commande
-    static updateTotalAmount(orderId, totalAmount) {
-        return db.query('UPDATE orders SET total_amount = ? WHERE id = ?', [totalAmount, orderId])
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                console.error("Erreur lors de la mise à jour du montant total de la commande:", err);
-                throw err; 
-            });
+    // Méthode pour mettre à jour le montant total d'une commande
+    async updateTotalAmount(orderId, total_amount) {
+        try {
+            const res = await this.db.query(
+                'UPDATE orders SET total_amount = ? WHERE id = ?',
+                [total_amount, orderId]
+            );
+            return res;
+        } catch (err) {
+            console.error("Erreur lors de la mise à jour du montant total :", err.message);
+            throw err;
+        }
     }
 
-    // Récupération d'une commande en fonction d'un id
-    static getOneOrder(id) {
-        return db.query('SELECT * FROM orders WHERE id = ?', [id])
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                console.error("Erreur lors de la récupération de la commande:", err);
-                throw err;
-            });
+    // Méthode pour obtenir toutes les commandes
+    async getAllOrders() {
+        try {
+            const res = await this.db.query('SELECT * FROM orders');
+            return res;
+        } catch (err) {
+            console.error("Erreur lors de la récupération de toutes les commandes:", err.message);
+            throw err;
+        }
     }
 
-    // Récupération d'une seule commande avec détails
-    static getOneOrderWithDetails(id) {
-        return db.query(`
-            SELECT 
-                firstname, 
-                lastname, 
-                email, 
-                orders.users_id, 
-                total_amount, 
-                orders.created_at, 
-                status, 
-                ordersdetails.orders_id, 
-                ordersdetails.products_id, 
-                ordersdetails.quantity, 
-                ordersdetails.unit_price, 
-                products.type, 
-                products.description, 
-                products.price, 
-                products.picture 
-            FROM 
-                orders 
-            INNER JOIN 
-                users ON orders.users_id = users.id 
-            LEFT JOIN 
-                adress ON orders.users_id = adress.users_id 
-            LEFT JOIN 
-               ordersdetails ON orders.id = ordersdetails.orders_id 
-            LEFT JOIN 
-                products ON ordersdetails.products_id = products.id 
-            WHERE 
-                orders.id = ?`, 
-            [id]
-        )
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                console.error("Erreur lors de la récupération des détails de la commande:", err);
-                throw err;
-            });
+    // Méthode pour obtenir une commande spécifique
+    async getOneOrder(orderId) {
+        try {
+            const res = await this.db.query('SELECT * FROM orders WHERE id = ?', [orderId]);
+            if (res.length === 0) {
+                throw new Error("Commande non trouvée");
+            }
+            return res;
+        } catch (err) {
+            console.error("Erreur lors de la récupération de la commande:", err.message);
+            throw err;
+        }
     }
 
-    // Modification d'un status de commande
-    static updateStatus(order_id, status) {
-        return db.query('UPDATE orders SET status = ? WHERE id = ?', [status, order_id])
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                console.error("Erreur lors de la mise à jour du statut de la commande:", err);
-                throw err;
-            });
+    // Méthode pour obtenir les détails d'une commande
+    async getAllDetails(orderId) {
+        try {
+            const res = await this.db.query('SELECT * FROM ordersdetails WHERE orders_id = ?', [orderId]);
+            return res;
+        } catch (err) {
+            console.error("Erreur lors de la récupération des détails de la commande:", err.message);
+            throw err;
+        }
     }
 
-    // Récupération de toutes les commandes
-    static getAllOrders() {
-        return db.query('SELECT * FROM orders')
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                console.error("Erreur lors de la récupération de toutes les commandes:", err);
-                throw err;
-            });
-    }
-
-    // Récupération des détails d'une commande
-    static getAllDetails(order_id) {
-        return db.query('SELECT ordersdetails.id, ordersdetails.quantity, unit_price, name, description, picture FROM ordersdetails INNER JOIN products ON products.id = ordersdetails.products_id WHERE orders_id = ?', [order_id])
-            .then((res) => {
-                return res;
-            })
-            .catch((err) => {
-                console.error("Erreur lors de la récupération des détails de la commande:", err);
-                throw err;
-            });
+    // Méthode pour mettre à jour le statut d'une commande
+    async updateStatus(orderId, status) {
+        try {
+            const res = await this.db.query(
+                'UPDATE orders SET status = ? WHERE id = ?',
+                [status, orderId]
+            );
+            return res;
+        } catch (err) {
+            console.error("Erreur lors de la mise à jour du statut de la commande:", err.message);
+            throw err;
+        }
     }
 }
+
+module.exports = (db) => new OrderModel(db);
